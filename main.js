@@ -23,6 +23,18 @@ javascript:(function(){
     textarea.style.fontSize = '14px';
     textarea.style.fontFamily = 'inherit';
     textarea.style.resize = 'none';
+    textarea.style.color = '#000000';
+    textarea.style.backgroundColor = '#e0e0e0';
+
+    textarea.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+            this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+            this.selectionStart = this.selectionEnd = start + 1;
+        }
+    });
 
     var buttonContainer = document.createElement('div');
     buttonContainer.style.display = 'flex';
@@ -31,8 +43,8 @@ javascript:(function(){
 
     var saveButton = document.createElement('button');
     saveButton.innerText = 'Save';
-    saveButton.style.backgroundColor = '#4CAF50';
-    saveButton.style.color = 'white';
+    saveButton.style.backgroundColor = '#e0e0e0';
+    saveButton.style.color = 'black';
     saveButton.style.border = 'none';
     saveButton.style.padding = '10px 20px';
     saveButton.style.borderRadius = '4px';
@@ -47,8 +59,8 @@ javascript:(function(){
 
     var loadButton = document.createElement('button');
     loadButton.innerText = 'Load';
-    loadButton.style.backgroundColor = '#2196F3';
-    loadButton.style.color = 'white';
+    loadButton.style.backgroundColor = '#e0e0e0';
+    loadButton.style.color = 'black';
     loadButton.style.border = 'none';
     loadButton.style.padding = '10px 20px';
     loadButton.style.borderRadius = '4px';
@@ -67,8 +79,8 @@ javascript:(function(){
 
     var closeButton = document.createElement('button');
     closeButton.innerText = 'Close';
-    closeButton.style.backgroundColor = '#f44336';
-    closeButton.style.color = 'white';
+    closeButton.style.backgroundColor = '#e0e0e0';
+    closeButton.style.color = 'black';
     closeButton.style.border = 'none';
     closeButton.style.padding = '10px 20px';
     closeButton.style.borderRadius = '4px';
