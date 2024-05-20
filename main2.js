@@ -14,8 +14,8 @@ javascript:(function(){
     var textarea = document.createElement('textarea');
     textarea.style.width = '100%';
     textarea.style.height = 'calc(100% - 50px)';
-    textarea.style.border = 'none';
-    textarea.style.padding = '8px';
+    textarea.style.border = '1px solid black';
+    textarea.style.padding = '2px';
     textarea.style.boxSizing = 'border-box';
     textarea.style.fontSize = '14px';
     textarea.style.fontFamily = 'Arial, sans-serif';
@@ -101,10 +101,37 @@ javascript:(function(){
         textarea.value = '';
     };
 
+    var darkButton = document.createElement('button');
+    darkButton.innerText = 'DarkMode';
+    darkButton.style.backgroundColor = '#e0e0e0';
+    darkButton.style.color = 'black';
+    darkButton.style.border = 'none';
+    darkButton.style.padding = '10px 20px';
+    darkButton.style.borderRadius = '4px';
+    darkButton.style.cursor = 'pointer';
+    darkButton.onclick = function(){
+        notepad.style.backgroundColor = '#1e2124';
+        textarea.style.backgroundColor = '#424549';
+        textarea.style.color = '#7289da';
+        textarea.style.border = '1px solid #7289da';
+        bottomLine.style.backgroundColor = '#1e2124';
+        saveButton.style.backgroundColor = '#36393e';
+        saveButton.style.color = '#7289da';
+        loadButton.style.backgroundColor = '#36393e';
+        loadButton.style.color = '#7289da';
+        refreshButton.style.backgroundColor = '#36393e';
+        refreshButton.style.color = '#7289da';
+        clearButton.style.backgroundColor = '#36393e';
+        clearButton.style.color = '#7289da';
+        darkButton.style.backgroundColor = '#36393e';
+        darkButton.style.color = '#7289da'; 
+    };
+
     bottomLine.appendChild(saveButton);
     bottomLine.appendChild(loadButton);
     bottomLine.appendChild(refreshButton);
     bottomLine.appendChild(clearButton);
+    bottomLine.appendChild(darkButton);
 
     document.body.appendChild(bottomLine);
     notepad.appendChild(textarea);
