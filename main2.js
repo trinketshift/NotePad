@@ -101,40 +101,63 @@ javascript:(function(){
         textarea.value = '';
     };
 
-    var darkButton = document.createElement('button');
-    darkButton.innerText = 'DarkMode';
-    darkButton.style.backgroundColor = '#e0e0e0';
-    darkButton.style.color = 'black';
-    darkButton.style.border = 'none';
-    darkButton.style.padding = '10px 20px';
-    darkButton.style.borderRadius = '4px';
-    darkButton.style.cursor = 'pointer';
-    darkButton.onclick = function(){
-        notepad.style.backgroundColor = '#1e2124';
-        textarea.style.backgroundColor = '#424549';
-        textarea.style.color = '#7289da';
-        textarea.style.border = '1px solid #7289da';
-        bottomLine.style.backgroundColor = '#1e2124';
-        saveButton.style.backgroundColor = '#36393e';
-        saveButton.style.color = '#7289da';
-        loadButton.style.backgroundColor = '#36393e';
-        loadButton.style.color = '#7289da';
-        refreshButton.style.backgroundColor = '#36393e';
-        refreshButton.style.color = '#7289da';
-        clearButton.style.backgroundColor = '#36393e';
-        clearButton.style.color = '#7289da';
-        darkButton.style.backgroundColor = '#36393e';
-        darkButton.style.color = '#7289da'; 
+    var themeButton = document.createElement('button');
+    themeButton.innerText = 'Dark mode';
+    themeButton.style.backgroundColor = '#e0e0e0';
+    themeButton.style.color = 'black';
+    themeButton.style.border = 'none';
+    themeButton.style.padding = '10px 20px';
+    themeButton.style.borderRadius = '4px';
+    themeButton.style.cursor = 'pointer';
+    themeButton.onclick = function(){
+        if (document.title === 'NotePad (Light)') {
+            notepad.style.backgroundColor = '#1e2124';
+            textarea.style.backgroundColor = '#424549';
+            textarea.style.color = '#7289da';
+            textarea.style.border = '1px solid #7289da';
+            bottomLine.style.backgroundColor = '#1e2124';
+            saveButton.style.backgroundColor = '#36393e';
+            saveButton.style.color = '#7289da';
+            loadButton.style.backgroundColor = '#36393e';
+            loadButton.style.color = '#7289da';
+            refreshButton.style.backgroundColor = '#36393e';
+            refreshButton.style.color = '#7289da';
+            clearButton.style.backgroundColor = '#36393e';
+            clearButton.style.color = '#7289da';
+            themeButton.style.backgroundColor = '#36393e';
+            themeButton.style.color = '#7289da'; 
+            document.title = 'NotePad (Dark)';
+            themeButton.innerText = "Light mode";
+        }
+        else {
+            notepad.style.backgroundColor = '#f9f9f9';
+            textarea.style.backgroundColor = '#e0e0e0';
+            textarea.style.color = '#000000';
+            textarea.style.border = '1px solid black';
+            bottomLine.style.backgroundColor = '#ffffff';
+            saveButton.style.backgroundColor = '#e0e0e0';
+            saveButton.style.color = 'black';
+            loadButton.style.backgroundColor = '#e0e0e0';
+            loadButton.style.color = 'black';
+            refreshButton.style.backgroundColor = '#e0e0e0';
+            refreshButton.style.color = 'black';
+            clearButton.style.backgroundColor = '#e0e0e0';
+            clearButton.style.color = 'black';
+            themeButton.style.backgroundColor = '#e0e0e0';
+            themeButton.style.color = 'black'; 
+            document.title = 'NotePad (Light)';
+            themeButton.innerText = "Dark mode";
+        }
     };
 
     bottomLine.appendChild(saveButton);
     bottomLine.appendChild(loadButton);
     bottomLine.appendChild(refreshButton);
     bottomLine.appendChild(clearButton);
-    bottomLine.appendChild(darkButton);
+    bottomLine.appendChild(themeButton);
 
     document.body.appendChild(bottomLine);
     notepad.appendChild(textarea);
     document.body.appendChild(notepad);
-    document.title = 'NotePad';
+    document.title = 'NotePad (Light)';
 })();
