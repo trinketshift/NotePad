@@ -90,7 +90,27 @@ javascript:(function(){
 
        settings.appendChild(sizeButton);
 
-    var fonts = ['Arial, sans-serif', 'Courier New, monospace', 'Georgia, serif', 'Times New Roman, serif', 'Verdana, sans-serif'];
+    var setButton = document.createElement('button');
+        setButton.innerText = 'Clear';
+        setButton.style.backgroundColor = '#36393e';
+        setButton.style.color = '#7289da';
+        setButton.style.border = '2px solid #7289da';
+        setButton.style.padding = '10px 20px';
+        setButton.style.borderRadius = '4px';
+        setButton.style.position = 'absolute';
+        setButton.style.top = '40px';
+        setButton.style.marginTop = '10px';
+        setButton.style.cursor = 'pointer';
+        setButton.onclick = function(){
+            localStorage.setItem('notepad-font', 'Arial, sans-serif');
+            localStorage.setItem('notepad-size', '14px');
+            localStorage.setItem('notepad-content', '');
+            textarea.style.fontSize = '14px';
+            textarea.style.fontFamily = 'Arial, sans-serif';
+        };
+        settings.appendChild(setButton);
+
+    var fonts = ['Arial', 'sans-serif', 'Courier New', 'monospace', 'Georgia', 'serif', 'Times New Roman', 'Verdana'];
     fonts.forEach(function(font) {
         var fontOption = document.createElement('div');
         fontOption.innerText = font;
