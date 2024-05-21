@@ -17,10 +17,11 @@ javascript:(function(){
     textarea.style.padding = '2px';
     textarea.style.boxSizing = 'border-box';
     textarea.style.fontSize = '14px';
-    textarea.style.fontFamily = 'Arial, sans-serif';
+    textarea.style.fontFamily = 'Arial';
     textarea.style.resize = 'none';
     textarea.style.backgroundColor = '#424549';
     textarea.style.color = '#7289da';
+    textarea.style.zIndex = '9999';
     textarea.style.border = '3px solid #7289da';
 
     var savedFont = localStorage.getItem('notepad-font');
@@ -54,6 +55,18 @@ javascript:(function(){
     bottomLine.style.justifyContent = 'flex-start';
     bottomLine.style.alignItems = 'center';
 
+    var invisBlur = document.createElement('div');
+    invisBlur.style.position = 'fixed';
+    invisBlur.style.top = '0';
+    invisBlur.style.left = '0';
+    invisBlur.style.width = '100vw';
+    invisBlur.style.height = '100vh';
+    invisBlur.style.backgroundColor = '#1e2124';
+    invisBlur.style.opacity = '0';
+    invisBlur.style.zIndex = '10001';
+    invisBlur.style.overflowY = 'auto';
+    invisBlur.style.display = 'none';
+
     var settings = document.createElement('div');
     settings.style.position = 'fixed';
     settings.style.top = '50%';
@@ -61,7 +74,7 @@ javascript:(function(){
     settings.style.transform = 'translate(-50%, -50%)';
     settings.style.width = '300px';
     settings.style.height = '400px';
-    settings.style.zIndex = '10001';
+    settings.style.zIndex = '10002';
     settings.style.backgroundColor = '#36393e';
     settings.style.color = '#7289da';
     settings.style.display = 'none';
@@ -71,7 +84,7 @@ javascript:(function(){
     settings.style.flexDirection = 'column';
     settings.style.padding = '10px';
     settings.style.overflowY = 'auto';
-
+    
     var sizeButton = document.createElement('button');
         sizeButton.innerText = 'Size';
         sizeButton.style.backgroundColor = '#36393e';
@@ -84,10 +97,14 @@ javascript:(function(){
         sizeButton.style.cursor = 'pointer';
         sizeButton.onclick = function(){
           var size = prompt("what would you like the size of the text to be?");
-          textarea.style.fontSize = size+'px';
-          localStorage.setItem('notepad-size', size);
+            if (isNaN(size)) {
+                alert("Please input a valid number.");
+            } else {
+                textarea.style.fontSize = size+'px';
+                localStorage.setItem('notepad-size', size);
+            }
         };
-
+    
        settings.appendChild(sizeButton);
 
     var setButton = document.createElement('button');
@@ -136,6 +153,9 @@ javascript:(function(){
     closeButton.style.bottom = '10px';
     closeButton.onclick = function(){
         settings.style.display = 'none';
+        invisBlur.style.display = 'none';
+        notepad.style.filter = "";
+        bottomLine.style.filter = "";
     };
 
     settings.appendChild(closeButton);
@@ -210,6 +230,12 @@ javascript:(function(){
     setButton.style.cursor = 'pointer';
     setButton.onclick = function(){
         settings.style.display = 'flex';
+        invisBlur.style.display = 'flex';
+        textarea.blur();
+        invisBlur.style.filter = "blur(3px)";
+        bottomLine.style.filter = "blur(3px)";
+        notepad.style.filter = "blur(3px)";
+        
     };
 
     bottomLine.appendChild(saveButton);
@@ -222,5 +248,6 @@ javascript:(function(){
     notepad.appendChild(textarea);
     document.body.appendChild(notepad);
     document.body.appendChild(settings);
+    document.body.appendChild(invisBlur);
     document.title = 'NotePad';
 })();
