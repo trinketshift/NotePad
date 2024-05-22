@@ -84,48 +84,48 @@ javascript:(function(){
     settings.style.flexDirection = 'column';
     settings.style.padding = '10px';
     settings.style.overflowY = 'auto';
-    
-    var sizeButton = document.createElement('button');
-        sizeButton.innerText = 'Size';
-        sizeButton.style.backgroundColor = '#36393e';
-        sizeButton.style.color = '#7289da';
-        sizeButton.style.border = '2px solid #7289da';
-        sizeButton.style.padding = '10px 20px';
-        sizeButton.style.borderRadius = '4px';
-        sizeButton.style.top = '10px';
-        sizeButton.style.position = 'absolute';
-        sizeButton.style.cursor = 'pointer';
-        sizeButton.onclick = function(){
-          var size = prompt("what would you like the size of the text to be?");
-            if (isNaN(size)) {
-                alert("Please input a valid number.");
-            } else {
-                textarea.style.fontSize = size+'px';
-                localStorage.setItem('notepad-size', size);
-            }
-        };
-    
-       settings.appendChild(sizeButton);
+    settings.style.alignItems = 'left';
 
-    var setButton = document.createElement('button');
-        setButton.innerText = 'Clear';
-        setButton.style.backgroundColor = '#36393e';
-        setButton.style.color = '#7289da';
-        setButton.style.border = '2px solid #7289da';
-        setButton.style.padding = '10px 20px';
-        setButton.style.borderRadius = '4px';
-        setButton.style.position = 'absolute';
-        setButton.style.top = '40px';
-        setButton.style.marginTop = '10px';
-        setButton.style.cursor = 'pointer';
-        setButton.onclick = function(){
-            localStorage.setItem('notepad-font', 'Arial, sans-serif');
-            localStorage.setItem('notepad-size', '14px');
-            localStorage.setItem('notepad-content', '');
-            textarea.style.fontSize = '14px';
-            textarea.style.fontFamily = 'Arial, sans-serif';
-        };
-        settings.appendChild(setButton);
+    var sizeButton = document.createElement('button');
+    sizeButton.innerText = 'Size';
+    sizeButton.style.backgroundColor = '#36393e';
+    sizeButton.style.color = '#7289da';
+    sizeButton.style.border = '2px solid #7289da';
+    sizeButton.style.padding = '10px 20px';
+    sizeButton.style.borderRadius = '4px';
+    sizeButton.style.top = '10px';
+    sizeButton.style.marginBottom = '20px';
+    sizeButton.style.position = 'absolute';
+    sizeButton.style.cursor = 'pointer';
+    sizeButton.onclick = function(){
+      var size = prompt("what would you like the size of the text to be?");
+        if (isNaN(size)) {
+            alert("Please input a valid number.");
+        } else {
+            textarea.style.fontSize = size+'px';
+            localStorage.setItem('notepad-size', size);
+        }
+    };
+
+   settings.appendChild(sizeButton);
+
+    var nameHide = document.createElement('button');
+    nameHide.innerText = 'Name';
+    nameHide.style.backgroundColor = '#36393e';
+    nameHide.style.color = '#7289da';
+    nameHide.style.border = '2px solid #7289da';
+    nameHide.style.padding = '10px 20px';
+    nameHide.style.borderRadius = '4px';
+    nameHide.style.cursor = 'pointer';
+    nameHide.style.marginTop = '60px';
+    nameHide.onclick = function(){
+        if (document.title === 'NotePad'){
+            document.title = 'Google';
+        } else {
+            document.title = 'NotePad';
+        }
+    };
+    settings.appendChild(nameHide);
 
     var fonts = ['Arial', 'sans-serif', 'Courier New', 'monospace', 'Georgia', 'serif', 'Times New Roman', 'Verdana'];
     fonts.forEach(function(font) {
@@ -134,12 +134,33 @@ javascript:(function(){
         fontOption.style.fontFamily = font;
         fontOption.style.cursor = 'pointer';
         fontOption.style.margin = '5px 0';
+        fontOption.style.bottom = '5';
         fontOption.onclick = function() {
             textarea.style.fontFamily = font;
             localStorage.setItem('notepad-font', font);
         };
         settings.appendChild(fontOption);
     });
+
+    var setButton = document.createElement('button');
+    setButton.innerText = 'Clear';
+    setButton.style.backgroundColor = '#36393e';
+    setButton.style.color = '#7289da';
+    setButton.style.border = '2px solid #7289da';
+    setButton.style.padding = '10px 20px';
+    setButton.style.borderRadius = '4px';
+    setButton.style.position = 'absolute';
+    setButton.style.top = '60px';
+    setButton.style.cursor = 'pointer';
+    setButton.style.marginBottom = '30px';
+    setButton.onclick = function(){
+        localStorage.setItem('notepad-font', 'Arial, sans-serif');
+        localStorage.setItem('notepad-size', '14px');
+        localStorage.setItem('notepad-content', '');
+        textarea.style.fontSize = '14px';
+        textarea.style.fontFamily = 'Arial';
+    };
+    settings.appendChild(setButton);
 
     var closeButton = document.createElement('button');
     closeButton.innerText = 'Close';
@@ -228,6 +249,7 @@ javascript:(function(){
     setButton.style.padding = '10px 20px';
     setButton.style.borderRadius = '4px';
     setButton.style.cursor = 'pointer';
+    setButton.style.marginRight = '10px';
     setButton.onclick = function(){
         settings.style.display = 'flex';
         invisBlur.style.display = 'flex';
@@ -235,7 +257,7 @@ javascript:(function(){
         invisBlur.style.filter = "blur(3px)";
         bottomLine.style.filter = "blur(3px)";
         notepad.style.filter = "blur(3px)";
-        
+
     };
 
     bottomLine.appendChild(saveButton);
